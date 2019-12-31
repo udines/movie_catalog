@@ -21,14 +21,11 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   Stream<MovieState> _mapMovieRequestedToState(MovieRequested event) async* {
+    yield GetMovieLoading();
     final String movieId = event.movieId;
     try {
       final Movie movie = await repository.getMovie(movieId);
-      if (movie != null) {
-        yield GetMovieSuccess(movie);
-      } else {
-        yield NoMovieData();
-      }
+      yield GetMovieSuccess(movie);
     } catch (error) {
       yield error is ErrorResponse
         ? GetMovieError(error)
