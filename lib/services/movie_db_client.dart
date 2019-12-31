@@ -5,6 +5,7 @@ import 'package:flutter_movie_catalog/models/authentication/request_token.dart';
 import 'package:flutter_movie_catalog/models/authentication/session.dart';
 import 'package:flutter_movie_catalog/models/authentication/validate_token_body.dart';
 import 'package:flutter_movie_catalog/models/errors/error_response.dart';
+import 'package:flutter_movie_catalog/models/movies/movie_list.dart';
 import 'package:http/http.dart' as http;
 
 class MovieDbClient {
@@ -89,6 +90,22 @@ class MovieDbClient {
 
     if (response.statusCode == 200) {
       return Session.fromJson(results);
+    } else {
+      throw ErrorResponse.fromJson(results);
+    }
+  }
+
+  Future<MovieList> getPopularMovies(int page) async {
+    const String endpoint = '/movie/popular';
+    final Map<String, String> query = newQuery();
+    query['page'] = page.toString();
+    final String url = createUrl(endpoint, query);
+
+    final http.Response response = await httpClient.get(url);
+    final Map<String, dynamic> results = json.decode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode == 200) {
+      return MovieList.fromJson(results);
     } else {
       throw ErrorResponse.fromJson(results);
     }
