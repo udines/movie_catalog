@@ -95,8 +95,56 @@ class MovieDbClient {
     }
   }
 
+  Future<MovieList> getNowPlayingMovies(int page) async {
+    const String endpoint = '/movie/latest';
+    final Map<String, String> query = newQuery();
+    query['page'] = page.toString();
+    final String url = createUrl(endpoint, query);
+
+    final http.Response response = await httpClient.get(url);
+    final Map<String, dynamic> results = json.decode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode == 200) {
+      return MovieList.fromJson(results);
+    } else {
+      throw ErrorResponse.fromJson(results);
+    }
+  }
+
   Future<MovieList> getPopularMovies(int page) async {
     const String endpoint = '/movie/popular';
+    final Map<String, String> query = newQuery();
+    query['page'] = page.toString();
+    final String url = createUrl(endpoint, query);
+
+    final http.Response response = await httpClient.get(url);
+    final Map<String, dynamic> results = json.decode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode == 200) {
+      return MovieList.fromJson(results);
+    } else {
+      throw ErrorResponse.fromJson(results);
+    }
+  }
+
+  Future<MovieList> getTopRatedMovies(int page) async {
+    const String endpoint = '/movie/top_rated';
+    final Map<String, String> query = newQuery();
+    query['page'] = page.toString();
+    final String url = createUrl(endpoint, query);
+
+    final http.Response response = await httpClient.get(url);
+    final Map<String, dynamic> results = json.decode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode == 200) {
+      return MovieList.fromJson(results);
+    } else {
+      throw ErrorResponse.fromJson(results);
+    }
+  }
+
+  Future<MovieList> getUpcomingMovies(int page) async {
+    const String endpoint = '/movie/upcoming';
     final Map<String, String> query = newQuery();
     query['page'] = page.toString();
     final String url = createUrl(endpoint, query);
