@@ -1,6 +1,7 @@
 import 'package:flutter_movie_catalog/models/authentication/guest_session.dart';
 import 'package:flutter_movie_catalog/models/authentication/request_token.dart';
 import 'package:flutter_movie_catalog/models/authentication/session.dart';
+import 'package:flutter_movie_catalog/models/movies/movie.dart';
 import 'package:flutter_movie_catalog/models/movies/movie_list.dart';
 import 'package:flutter_movie_catalog/services/movie_db_client.dart';
 
@@ -46,6 +47,11 @@ class MovieDbRepository {
 
   Future<MovieList> getUpcomingMovies(int page) async {
     final MovieList result = await client.getUpcomingMovies(page);
+    return result;
+  }
+
+  Future<Movie> getMovie(String movieId) async {
+    final Movie result = await client.getMovie(movieId);
     return result;
   }
 }
