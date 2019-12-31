@@ -10,7 +10,7 @@ abstract class MovieListState extends Equatable {
 }
 
 class MovieNotFound extends MovieListState {}
-class NoMovieData extends MovieListState {}
+class NoMovies extends MovieListState {}
 class GetMoviesLoading extends MovieListState {}
 
 class GetMoviesSuccess extends MovieListState {

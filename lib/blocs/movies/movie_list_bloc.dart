@@ -11,7 +11,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
   final MovieDbRepository repository;
 
   @override
-  MovieListState get initialState => NoMovieData();
+  MovieListState get initialState => NoMovies();
 
   @override
   Stream<MovieListState> mapEventToState(MovieListEvent event) async* {
@@ -27,6 +27,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
   }
 
   Stream<MovieListState> _mapNowPlayingEventToState(NowPlayingRequested event) async* {
+    yield GetMoviesLoading();
     final int page = event.page;
     try {
       final MovieList movies = await repository.getNowPlayingMovies(page);
@@ -43,6 +44,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
   }
 
   Stream<MovieListState> _mapPopularEventToState(PopularRequested event) async* {
+    yield GetMoviesLoading();
     final int page = event.page;
     try {
       final MovieList movies = await repository.getPopularMovies(page);
@@ -59,6 +61,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
   }
 
   Stream<MovieListState> _mapTopRatedEventToState(TopRatedRequested event) async* {
+    yield GetMoviesLoading();
     final int page = event.page;
     try {
       final MovieList movies = await repository.getTopRatedMovies(page);
@@ -75,6 +78,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
   }
 
   Stream<MovieListState> _mapUpcomingEventToState(UpcomingRequested event) async* {
+    yield GetMoviesLoading();
     final int page = event.page;
     try {
       final MovieList movies = await repository.getUpcomingMovies(page);
