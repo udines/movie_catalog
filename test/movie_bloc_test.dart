@@ -31,10 +31,10 @@ void main() {
       blocTest<MovieBloc, MovieEvent, MovieState>(
         'Get movie success',
         build: () {
-          when(repository.getMovie('movieId')).thenAnswer((_) => Future<Movie>.value(movie));
+          when(repository.getMovie(1001)).thenAnswer((_) => Future<Movie>.value(movie));
           return bloc;
         },
-        act: (dynamic bloc) => Future<void>.value(bloc.add(const MovieRequested('movieId'))),
+        act: (dynamic bloc) => Future<void>.value(bloc.add(const MovieRequested(1001))),
         expect: <MovieState>[
           NoMovieData(),
           GetMovieLoading(),
@@ -45,10 +45,10 @@ void main() {
       blocTest<MovieBloc, MovieEvent, MovieState>(
         'Get movie error',
         build: () {
-          when(repository.getMovie('movieId')).thenThrow(error);
+          when(repository.getMovie(1001)).thenThrow(error);
           return bloc;
         },
-        act: (dynamic bloc) => Future<void>.value(bloc.add(const MovieRequested('movieId'))),
+        act: (dynamic bloc) => Future<void>.value(bloc.add(const MovieRequested(1001))),
         expect: <MovieState>[
           NoMovieData(),
           GetMovieLoading(),

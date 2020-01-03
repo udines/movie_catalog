@@ -160,8 +160,8 @@ class MovieDbClient {
     }
   }
 
-  Future<Movie> getMovie(String movieId) async {
-    final String endpoint = '/movie/' + movieId;
+  Future<Movie> getMovie(int movieId) async {
+    final String endpoint = '/movie/' + movieId.toString();
     final String url = createUrl(endpoint, newQuery());
 
     final http.Response response = await httpClient.get(url);

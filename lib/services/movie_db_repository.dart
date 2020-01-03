@@ -3,12 +3,14 @@ import 'package:flutter_movie_catalog/models/authentication/request_token.dart';
 import 'package:flutter_movie_catalog/models/authentication/session.dart';
 import 'package:flutter_movie_catalog/models/movies/movie.dart';
 import 'package:flutter_movie_catalog/models/movies/movie_list.dart';
+import 'package:flutter_movie_catalog/services/movie_db_cache.dart';
 import 'package:flutter_movie_catalog/services/movie_db_client.dart';
 
 class MovieDbRepository {
-  MovieDbRepository(this.client);
+  MovieDbRepository(this.client, this.cache);
 
   final MovieDbClient client;
+  final MovieDbCache cache;
 
   Future<GuestSession> createGuestSession() async {
     final GuestSession result = await client.createGuestSession();
@@ -50,8 +52,13 @@ class MovieDbRepository {
     return result;
   }
 
-  Future<Movie> getMovie(String movieId) async {
-    final Movie result = await client.getMovie(movieId);
-    return result;
+  Future<Movie> getMovie(int movieId) async {
+    if (cache.movieExists(movieId)) {
+      return cache.getMovie(movieId);
+    } else {
+      final Movie result = await client.getMovie(movieId);
+      cache.setMovie(result);
+      return result;
+    }
   }
 }
