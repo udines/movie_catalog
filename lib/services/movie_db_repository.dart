@@ -33,23 +33,43 @@ class MovieDbRepository {
   }
 
   Future<MovieList> getNowPlayingMovies(int page) async {
-    final MovieList result = await client.getNowPlayingMovies(page);
-    return result;
+    if (cache.nowPlayingExists(page)) {
+      return cache.getNowPlaying(page);
+    } else {
+      final MovieList result = await client.getNowPlayingMovies(page);
+      cache.setNowPlaying(page, result);
+      return result;
+    }
   }
 
   Future<MovieList> getPopularMovies(int page) async {
-    final MovieList result = await client.getPopularMovies(page);
-    return result;
+    if (cache.popularExists(page)) {
+      return cache.getPopular(page);
+    } else {
+      final MovieList result = await client.getPopularMovies(page);
+      cache.setPopular(page, result);
+      return result;
+    }
   }
 
   Future<MovieList> getTopRatedMovies(int page) async {
-    final MovieList result = await client.getTopRatedMovies(page);
-    return result;
+    if (cache.topRatedExists(page)) {
+      return cache.getTopRated(page);
+    } else {
+      final MovieList result = await client.getTopRatedMovies(page);
+      cache.setTopRated(page, result);
+      return result;
+    }
   }
 
   Future<MovieList> getUpcomingMovies(int page) async {
-    final MovieList result = await client.getUpcomingMovies(page);
-    return result;
+    if (cache.upcomingExists(page)) {
+      return cache.getUpcoming(page);
+    } else {
+      final MovieList result = await client.getUpcomingMovies(page);
+      cache.setUpcoming(page, result);
+      return result;
+    }
   }
 
   Future<Movie> getMovie(int movieId) async {
