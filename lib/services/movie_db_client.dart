@@ -40,11 +40,9 @@ class MovieDbClient {
     const String endpoint = '/authentication/guest_session/new';
     final String url = createUrl(endpoint, newQuery());
 
-    /// send http request
     final http.Response response = await httpClient.get(Uri.parse(url));
     final Map<String, dynamic> results = json.decode(response.body) as Map<String, dynamic>;
 
-    /// process http request results
     if (response.statusCode == 200) {
       return GuestSession.fromJson(results);
     } else {
