@@ -70,9 +70,9 @@ void main() {
     group('NowPlayingRequested', () {
       final MovieList movies = MovieList();
       final MovieList emptyMovies = MovieList();
-      final Results movie = Results();
-      movies.results = <Results>[movie];
-      emptyMovies.results = <Results>[];
+      final MovieItem movie = MovieItem();
+      movies.results = <MovieItem>[movie];
+      emptyMovies.results = <MovieItem>[];
       const int page = 1;
 
       blocTest<MovieListBloc, MovieListEvent, MovieListState>(
@@ -125,9 +125,9 @@ void main() {
     group('PopularRequested', () {
       final MovieList movies = MovieList();
       final MovieList emptyMovies = MovieList();
-      final Results movie = Results();
-      movies.results = <Results>[movie];
-      emptyMovies.results = <Results>[];
+      final MovieItem movie = MovieItem();
+      movies.results = <MovieItem>[movie];
+      emptyMovies.results = <MovieItem>[];
       const int page = 1;
 
       blocTest<MovieListBloc, MovieListEvent, MovieListState>(
@@ -180,9 +180,9 @@ void main() {
     group('TopRatedRequested', () {
       final MovieList movies = MovieList();
       final MovieList emptyMovies = MovieList();
-      final Results movie = Results();
-      movies.results = <Results>[movie];
-      emptyMovies.results = <Results>[];
+      final MovieItem movie = MovieItem();
+      movies.results = <MovieItem>[movie];
+      emptyMovies.results = <MovieItem>[];
       const int page = 1;
 
       blocTest<MovieListBloc, MovieListEvent, MovieListState>(
@@ -235,9 +235,9 @@ void main() {
     group('UpcomingRequested', () {
       final MovieList movies = MovieList();
       final MovieList emptyMovies = MovieList();
-      final Results movie = Results();
-      movies.results = <Results>[movie];
-      emptyMovies.results = <Results>[];
+      final MovieItem movie = MovieItem();
+      movies.results = <MovieItem>[movie];
+      emptyMovies.results = <MovieItem>[];
       const int page = 1;
 
       blocTest<MovieListBloc, MovieListEvent, MovieListState>(

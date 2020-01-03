@@ -4,9 +4,9 @@ class MovieList {
   MovieList.fromJson(Map<String, dynamic> json) {
     page = json['page'] as int;
     if (json['results'] != null) {
-      results = <Results>[];
+      results = <MovieItem>[];
       json['results'].forEach((dynamic v) {
-        results.add(Results.fromJson(v as Map<String, dynamic>));
+        results.add(MovieItem.fromJson(v as Map<String, dynamic>));
       });
     }
     totalResults = json['total_results'] as int;
@@ -14,7 +14,7 @@ class MovieList {
   }
 
   int page;
-  List<Results> results;
+  List<MovieItem> results;
   int totalResults;
   int totalPages;
 
@@ -22,7 +22,7 @@ class MovieList {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['page'] = page;
     if (results != null) {
-      data['results'] = results.map((Results v) => v.toJson()).toList();
+      data['results'] = results.map((MovieItem v) => v.toJson()).toList();
     }
     data['total_results'] = totalResults;
     data['total_pages'] = totalPages;
@@ -30,8 +30,8 @@ class MovieList {
   }
 }
 
-class Results {
-  Results(
+class MovieItem {
+  MovieItem(
       {this.posterPath,
       this.adult,
       this.overview,
@@ -47,7 +47,7 @@ class Results {
       this.video,
       this.voteAverage});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  MovieItem.fromJson(Map<String, dynamic> json) {
     posterPath = json['poster_path'] as String;
     adult = json['adult'] as bool;
     overview = json['overview'] as String;
