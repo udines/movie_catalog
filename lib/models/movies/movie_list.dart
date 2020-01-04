@@ -61,7 +61,7 @@ class MovieItem {
     popularity = json['popularity'] as double;
     voteCount = json['vote_count'] as int;
     video = json['video'] as bool;
-    voteAverage = json['vote_average'] as double;
+    voteAverage = json['vote_average'].toDouble() as double;
   }
 
   String posterPath;
