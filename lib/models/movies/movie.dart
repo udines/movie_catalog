@@ -2,7 +2,6 @@ class Movie {
   Movie({
     this.adult,
     this.backdropPath,
-    this.belongsToCollection,
     this.budget,
     this.genres,
     this.homepage,
@@ -30,7 +29,6 @@ class Movie {
   Movie.fromJson(Map<String, dynamic> json) {
     adult = json['adult'] as bool;
     backdropPath = json['backdrop_path'] as String;
-    belongsToCollection = json['belongs_to_collection'] as String;
     budget = json['budget'] as int;
     if (json['genres'] != null) {
       genres = <Genres>[];
@@ -77,7 +75,6 @@ class Movie {
 
   bool adult;
   String backdropPath;
-  String belongsToCollection;
   int budget;
   List<Genres> genres;
   String homepage;
@@ -105,7 +102,6 @@ class Movie {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['adult'] = adult;
     data['backdrop_path'] = backdropPath;
-    data['belongs_to_collection'] = belongsToCollection;
     data['budget'] = budget;
     if (genres != null) {
       data['genres'] = genres.map((Genres v) => v.toJson()).toList();
