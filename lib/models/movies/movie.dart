@@ -32,8 +32,8 @@ class Movie {
     budget = json['budget'] as int;
     if (json['genres'] != null) {
       genres = <Genres>[];
-      json['genres'].forEach((Map<String, dynamic> v) {
-        genres.add(Genres.fromJson(v));
+      json['genres'].forEach((dynamic v) {
+        genres.add(Genres.fromJson(v as Map<String, dynamic>));
       });
     }
     homepage = json['homepage'] as String;
@@ -46,14 +46,14 @@ class Movie {
     posterPath = json['poster_path'] as String;
     if (json['production_companies'] != null) {
       productionCompanies = <ProductionCompanies>[];
-      json['production_companies'].forEach((Map<String, dynamic> v) {
-        productionCompanies.add(ProductionCompanies.fromJson(v));
+      json['production_companies'].forEach((dynamic v) {
+        productionCompanies.add(ProductionCompanies.fromJson(v as Map<String, dynamic>));
       });
     }
     if (json['production_countries'] != null) {
       productionCountries = <ProductionCountries>[];
-      json['production_countries'].forEach((Map<String, dynamic> v) {
-        productionCountries.add(ProductionCountries.fromJson(v));
+      json['production_countries'].forEach((dynamic v) {
+        productionCountries.add(ProductionCountries.fromJson(v as Map<String, dynamic>));
       });
     }
     releaseDate = json['release_date'] as String;
@@ -61,8 +61,8 @@ class Movie {
     runtime = json['runtime'] as int;
     if (json['spoken_languages'] != null) {
       spokenLanguages = <SpokenLanguages>[];
-      json['spoken_languages'].forEach((Map<String, dynamic> v) {
-        spokenLanguages.add(SpokenLanguages.fromJson(v));
+      json['spoken_languages'].forEach((dynamic v) {
+        spokenLanguages.add(SpokenLanguages.fromJson(v as Map<String, dynamic>));
       });
     }
     status = json['status'] as String;
