@@ -10,7 +10,7 @@ class NowPlayingRequested extends MovieListEvent {
   final int page;
 
   @override
-  List<Object> get props => <Object>[];
+  List<Object> get props => <int>[page];
 }
 
 class PopularRequested extends MovieListEvent {
