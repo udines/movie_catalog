@@ -3,24 +3,23 @@ import 'package:flutter_movie_catalog/screens/movies_screen.dart';
 import 'package:flutter_movie_catalog/services/movie_db_cache.dart';
 import 'package:flutter_movie_catalog/services/movie_db_client.dart';
 import 'package:flutter_movie_catalog/services/movie_db_repository.dart';
+import 'package:injector/injector.dart';
 
 void main() {
-  final MovieDbRepository _movieDbRepository = MovieDbRepository(
-    MovieDbClient(),
-    MovieDbCache()
-  );
+  final Injector injector = Injector.appInstance;
 
-  runApp(App(movieDbRepository: _movieDbRepository));
+  injector.registerSingleton<MovieDbClient>((_) => MovieDbClient());
+  injector.registerSingleton<MovieDbCache>((_) => MovieDbCache());
+  injector.registerSingleton<MovieDbRepository>((Injector injector) {
+    final MovieDbClient client = injector.getDependency<MovieDbClient>();
+    final MovieDbCache cache = injector.getDependency<MovieDbCache>();
+    return MovieDbRepository(client, cache);
+  });
+
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({
-    Key key, 
-    @required this.movieDbRepository
-  }) : super(key: key);
-
-  final MovieDbRepository movieDbRepository;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +27,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MoviesScreen(movieDbRepository)
+      home: MoviesScreen()
     );
   }
 }
