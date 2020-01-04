@@ -1,6 +1,7 @@
 # flutter_movie_catalog
 
 A new Flutter project.
+[![CodeFactor](https://www.codefactor.io/repository/github/udines/movie_catalog/badge/master)](https://www.codefactor.io/repository/github/udines/movie_catalog/overview/master)
 
 ## Getting Started
 
