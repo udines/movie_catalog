@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie_catalog/blocs/movies/movie_list_bloc.dart';
 import 'package:flutter_movie_catalog/blocs/movies/movie_list_event.dart';
 import 'package:flutter_movie_catalog/blocs/movies/movie_list_state.dart';
-import 'package:flutter_movie_catalog/blocs/movies/movie_state.dart';
 import 'package:flutter_movie_catalog/models/movies/movie_list.dart';
 import 'package:injector/injector.dart';
 
