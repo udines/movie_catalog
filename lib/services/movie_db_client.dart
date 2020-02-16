@@ -95,7 +95,7 @@ class MovieDbClient {
   }
 
   Future<MovieList> getNowPlayingMovies(int page) async {
-    const String endpoint = '/movie/latest';
+    const String endpoint = '/movie/now_playing';
     final Map<String, String> query = newQuery();
     query['page'] = page.toString();
     final String url = createUrl(endpoint, query);
