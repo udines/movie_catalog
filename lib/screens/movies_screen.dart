@@ -5,6 +5,8 @@ import 'package:flutter_movie_catalog/blocs/movies/movie_list_bloc.dart';
 import 'package:flutter_movie_catalog/blocs/movies/movie_list_event.dart';
 import 'package:flutter_movie_catalog/blocs/movies/movie_list_state.dart';
 import 'package:flutter_movie_catalog/models/movies/movie_list.dart';
+import 'package:flutter_movie_catalog/views/movie_item_view.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:injector/injector.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -53,16 +55,15 @@ class _MovieScreenState extends State<MoviesScreen> {
                 return const Center(child: CircularProgressIndicator(),);
               } else if (state is GetMoviesSuccess) {
                 final MovieList movieList = state.movies;
-                return ListView.builder(
+                return StaggeredGridView.countBuilder(
+                  crossAxisCount: 2,
                   itemCount: movieList.results.length,
                   itemBuilder: (BuildContext context, int index) {
                     final MovieItem movie = movieList.results[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text(movie.title),
-                        subtitle: Text(movie.releaseDate),
-                      )
-                    );
+                    return MovieItemView(movie: movie,);
+                  }, 
+                  staggeredTileBuilder: (int index) {
+                    return const StaggeredTile.fit(1);
                   }
                 );
               } else if (state is GetMoviesError) {
