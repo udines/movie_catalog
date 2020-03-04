@@ -20,7 +20,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Movie Catalog',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: const MoviesScreen()
     );
